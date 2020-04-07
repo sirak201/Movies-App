@@ -14,18 +14,20 @@ import SwiftUI
 
 struct ContentView: View {
 //    var movies = moviesData
-    @State var amahric = false
+    @EnvironmentObject var setting : UserSettings
     @State var show = false
+    @ObservedObject var movie = Movie()
+    
     var body: some View {
         ScrollView {
             VStack {
                 HStack {
-                    Text(amahric ? "አሁን የሚታይ" : "Welcome")
+                    Text(setting.isAmharic ? "አሁን የሚታይ" : "Welcome")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                     Spacer()
                     
-                    Button(action : {self.amahric.toggle()}) {
+                    Button(action : {self.setting.isAmharic.toggle()}) {
                         Text("A")
                             .foregroundColor(Color(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)))
                             .font(.title)
@@ -42,26 +44,29 @@ struct ContentView: View {
                 .padding()
                 .padding(.leading , 10)
                 
-                Text(amahric ? "ኣሁን የታህ" : "Now Playing")
+                Text(setting.isAmharic ? "ኣሁን የታህ" : "Now Playing")
                     .font(.title)
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal , 30)
                     .padding(.top, 30)
+                
+//                ScrollView {
+                Text("\(movie.movies.count)")
+                   
+//                }
 
-                MovieList()
-                .offset(y : self.show ?  -175 : 0)
-                .frame(height : show ? 1000 : 650)
-                .zIndex(self.show ? 1 : 0)
+//                MovieList()
+//                .offset(y : self.show ?  -175 : 0)
+//                .frame(height : show ? 1000 : 650)
+//                .zIndex(self.show ? 1 : 0)
                 
                 
 //                .offset(y : show ? -200 : 0)
 //                .animation(.linear)
             }.onAppear(perform: {
-                let movies = Movie()
-                movies.fetchMovies { (res) in
-                    
-                }
+                
+                self.movie.fetchMovies()
             })
         }
     }

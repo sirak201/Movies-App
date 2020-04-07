@@ -40,12 +40,25 @@ var movieSchema = new Schema({
     },
   },
 
-  catagery: {
+  category: {
     type: [String],
     requited: true,
     validator: {
       validate: (catagery) => {
-        return catagery.length > 3;
+        return catagery.length >= 3;
+      },
+
+      message: (props) =>
+        `${props.value} The movie need to fit in  atleast 3 catagery`,
+    },
+  },
+
+  amh_category: {
+    type: [String],
+    requited: true,
+    validator: {
+      validate: (catagery) => {
+        return catagery.length >= 3;
       },
 
       message: (props) =>
@@ -87,7 +100,8 @@ movieSchema.statics.insertDefaultMovies = async function () {
         rating: 8.6,
         description:
           "Nam nunc nam accumsan hendrerit nec. Et accumsan massa mollis et nostra nam sed eget odio. Vestibulum molestie tempus nostra litora ut parturient sollicitudin. Cubilia, leo sed facilisi curae;! Aliquam natoque hac proin inceptos feugiat      dis torquent sociis libero! Mollis taciti tempus mauris. Molestie non orci nibh posuere cubilia doloid. Semper ipsum volutpat posuere aliquet habitasse dictum! Dis lobortis habitant interdum taciti facilisi metus neque nisl nascetur.",
-        catagery: ["Romance , Thriller", "Non-Fiction"],
+        category: ["Romance , Thriller", "Non-Fiction"],
+        amh_category: ["ፊኪር", "ኣስደንካህ", "አውነት ታሪክ"],
         actors: ["Meron G", "Tizita H", "Moges Y"],
         price: 14.99,
         imageUrl: "fff",
@@ -99,7 +113,8 @@ movieSchema.statics.insertDefaultMovies = async function () {
         rating: 8.6,
         description:
           "Nam nunc nam accumsan hendrerit nec. Et accumsan massa mollis et nostra nam sed eget odio. Vestibulum molestie tempus nostra litora ut parturient sollicitudin. Cubilia, leo sed facilisi curae;! Aliquam natoque hac proin inceptos feugiat      dis torquent sociis libero! Mollis taciti tempus mauris. Molestie non orci nibh posuere cubilia doloid. Semper ipsum volutpat posuere aliquet habitasse dictum! Dis lobortis habitant interdum taciti facilisi metus neque nisl nascetur.",
-        catagery: ["Action , Thriller", "Fiction"],
+        category: ["Action , Thriller", "Fiction"],
+        amh_category: ["ፊኪር", "ኣስደንካህ", "አውነት ታሪክ"],
         actors: ["Chris E", "Haley B", "Micheael K"],
         price: 14.99,
         imageUrl: "fff",
@@ -111,7 +126,8 @@ movieSchema.statics.insertDefaultMovies = async function () {
         rating: 8.6,
         description:
           "Nam nunc nam accumsan hendrerit nec. Et accumsan massa mollis et nostra nam sed eget odio. Vestibulum molestie tempus nostra litora ut parturient sollicitudin. Cubilia, leo sed facilisi curae;! Aliquam natoque hac proin inceptos feugiat      dis torquent sociis libero! Mollis taciti tempus mauris. Molestie non orci nibh posuere cubilia doloid. Semper ipsum volutpat posuere aliquet habitasse dictum! Dis lobortis habitant interdum taciti facilisi metus neque nisl nascetur.",
-        catagery: ["Action , Thriller", "Non-Fiction"],
+        category: ["Action , Thriller", "Non-Fiction"],
+        amh_category: ["ፊኪር", "ኣስደንካህ", "አውነት ታሪክ"],
         actors: ["Dingani B", "Getnet K", "Moges K"],
         price: 20.99,
         imageUrl: "fff",
